@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rubato.homepage.dao.IDao;
+import com.rubato.homepage.dto.RMemberDto;
 
 @Controller
 public class RubatoController {
@@ -30,7 +31,15 @@ public class RubatoController {
 	}
 	
 	@RequestMapping(value="board_write")
-	public String board_write() {
+	public String board_write(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
+		
+		RMemberDto dto = dao.memberInfoDao(sid);
+		model.addAttribute("minfo", dto);
+		
 		return "board_write";
 	}
 	
@@ -107,5 +116,19 @@ public class RubatoController {
 		return "redirect:index";
 	}
 	
+	@RequestMapping(value="writeOk")
+	public String writeOk(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		String rfbuserid = request.getParameter("rfbuserid");
+		String rfbname = request.getParameter("rfbname");
+		String rfbtitle = request.getParameter("rfbtitle");
+		String rfbcontent = request.getParameter("rfbcontent");
+		
+		dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+		
+		return "redirect:board_list";
+	}
 	
 }

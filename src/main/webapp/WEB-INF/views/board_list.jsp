@@ -13,11 +13,18 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/02board_list_main.css">
 </head>
 <body>
+<%
+		String sid = (String)session.getAttribute("sessionId");
+		if(sid == null){
+	%>
   <div id="wrap">
     <header>    <!--header strat-->
         <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
         <nav id="top_menu">
-            <a href="index">HOME</a> | <a href="index">LOGIN</a> | <a href="member_join">JOIN</a> | <a href="#">NOTICE</a>
+            <a href="index">HOME</a> |
+            <a href="index">LOGIN</a> |
+            <a href="member_join">JOIN</a> | 
+            <a href="#">NOTICE</a>
         </nav>
         <nav id="main_menu">
             <ul>
@@ -29,11 +36,6 @@
             </ul>
         </nav>
     </header>   <!--header end-->
-
-    <% 
-		String sid = (String)session.getAttribute("sessionId");
-		if(sid == null){
-	%>
     <aside>     <!-- login box strat -->
         <article id="login_box">
             <img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
@@ -56,12 +58,32 @@
    	<%
    	}else{
  	%>
+ 	<div id="wrap">
+    <header>    <!--header strat-->
+        <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
+        <nav id="top_menu">
+            <a href="index">HOME</a> |
+            <a href="logout">LOGOUT</a> |
+            <a href="member_join">JOIN</a> | 
+            <a href="#">NOTICE</a>
+        </nav>
+        <nav id="main_menu">
+            <ul>
+                <li><a href="board_list">자유 게시판</a></li>
+                <li><a href="#">기타 연주</a></li>
+                <li><a href="#">공동 구매</a></li>
+                <li><a href="#">연주회 안내</a></li>
+                <li><a href="#">회원 게시판</a></li>
+            </ul>
+        </nav>
+    </header>   <!--header end-->
  	<aside>
  		<article id="login_box">
+ 			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
-            <br><br>
+            <br>
             <h2><%=sid %>님 안녕하세요!</h2>
-            <br><br>
+            <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>
         </article>  <!-- login box end -->
@@ -128,20 +150,7 @@
                     <td class="col4">2022-09-30</td>
                     <td class="col5">15</td>
                 </tr>
-                <tr>
-                    <td class="col1">2</td>
-                    <td class="col2"><a href="board_view"> 까스통님의 선물인 보드카가 정말 독하네요!!!</a></td>
-                    <td class="col3">루바토</td>
-                    <td class="col4">2022-09-30</td>
-                    <td class="col5">15</td>
-                </tr>
-                <tr>
-                    <td class="col1">3</td>
-                    <td class="col2"><a href="board_view"> 까스통님의 선물인 보드카가 정말 독하네요!!!</a></td>
-                    <td class="col3">루바토</td>
-                    <td class="col4">2022-09-30</td>
-                    <td class="col5">15</td>
-                </tr>
+                
             </table>        <!-- 게시판 목록 테이블 end -->
             <div id="buttons">
                 <div class="col1">

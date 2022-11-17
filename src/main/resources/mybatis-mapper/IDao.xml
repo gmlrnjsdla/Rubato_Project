@@ -17,5 +17,14 @@
 	<select id="loginOkDao" resultType="String">
 		SELECT mpw FROM rubamember WHERE mid=#{param1}
 	</select>
+	
+	<select id="memberInfoDao" resultType="com.rubato.homepage.dto.RMemberDto">
+		SELECT * FROM rubamember WHERE mid=#{param1}
+	</select>
+	
+	<select id="rfbWriteDao">
+		INSERT INTO rubafreeboard(rfbnum, rfbname, rfbtitle, rfbcontent,  rfbhit, rfbuserid, rfbreplycount) 
+		VALUES(rfb_seq, #{param1},#{param2},#{param3},0,#{param4},0)
+	</select>
 
 </mapper>

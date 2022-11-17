@@ -13,11 +13,18 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/03board_write_main.css">
 </head>
 <body>
+<%
+		String sid = (String)session.getAttribute("sessionId");
+		if(sid == null){
+	%>
   <div id="wrap">
     <header>    <!--header strat-->
         <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
         <nav id="top_menu">
-            <a href="index">HOME</a> | <a href="index">LOGIN</a> | <a href="member_join">JOIN</a> | <a href="#">NOTICE</a>
+            <a href="index">HOME</a> |
+            <a href="index">LOGIN</a> |
+            <a href="member_join">JOIN</a> | 
+            <a href="#">NOTICE</a>
         </nav>
         <nav id="main_menu">
             <ul>
@@ -29,11 +36,6 @@
             </ul>
         </nav>
     </header>   <!--header end-->
-
-    <% 
-		String sid = (String)session.getAttribute("sessionId");
-		if(sid == null){
-	%>
     <aside>     <!-- login box strat -->
         <article id="login_box">
             <img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
@@ -56,12 +58,32 @@
    	<%
    	}else{
  	%>
+ 	<div id="wrap">
+    <header>    <!--header strat-->
+        <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
+        <nav id="top_menu">
+            <a href="index">HOME</a> |
+            <a href="logout">LOGOUT</a> |
+            <a href="member_join">JOIN</a> | 
+            <a href="#">NOTICE</a>
+        </nav>
+        <nav id="main_menu">
+            <ul>
+                <li><a href="board_list">자유 게시판</a></li>
+                <li><a href="#">기타 연주</a></li>
+                <li><a href="#">공동 구매</a></li>
+                <li><a href="#">연주회 안내</a></li>
+                <li><a href="#">회원 게시판</a></li>
+            </ul>
+        </nav>
+    </header>   <!--header end-->
  	<aside>
  		<article id="login_box">
+ 			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
-            <br><br>
+            <br>
             <h2><%=sid %>님 안녕하세요!</h2>
-            <br><br>
+            <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>
         </article>  <!-- login box end -->
@@ -92,29 +114,32 @@
             <h2 id="board_title">자유 게시판</h2>
             <div>
                 <h2 id="write_title">글쓰기</h2>
-                <table>
+                <form action="writeOk" >
+                <table >
+                	<input type="hidden" name="rfbuserid" value="${minfo.mid}">
                     <tr id="name">
                         <td class="col1">이름</td>
-                        <td class="col2"><input type="text"></td>
+                        <td class="col2"><input type="text" name="rfbname" value="${minfo.mname}" readonly="true"></td>
                     </tr>
                     <tr id="subject">
                         <td class="col1">제목</td>
-                        <td class="col2"><input type="text"></td>
+                        <td class="col2"><input type="text" name="rfbtitle"></td>
                     </tr>
                     <tr id="content">
                         <td class="col1">내용</td>
-                        <td class="col2"><textarea></textarea></td>
+                        <td class="col2"><textarea name="rfbcontent"></textarea></td>
                     </tr>
                     <tr id="upload">
                         <td class="col1">업로드 파일</td>
-                        <td class="col2"><input type="file"></td>
+                        <td class="col2"><input type="file" name="files"></td>
                     </tr>
                 </table>
             </div>
             <div id="buttons">
-                <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/ok.png"></a>
+                <input type="image" src="${pageContext.request.contextPath}/resources/img/ok.png">
                 <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
             </div>
+            </form>
         </section>
     </main>
     <div class="clear"></div>
