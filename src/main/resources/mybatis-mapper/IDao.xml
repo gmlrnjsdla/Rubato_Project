@@ -35,5 +35,13 @@
 	<select id="listDao" resultType="com.rubato.homepage.dto.RFBoardDto">
 		SELECT * FROM rubafreeboard ORDER BY rfbnum DESC
 	</select>
+	
+	<select id="boardViewDao" resultType="com.rubato.homepage.dto.RFBoardDto">
+		SELECT * FROM rubafreeboard WHERE rfbnum=#{param1}
+	</select>
+	
+	<update id="uphitDao">
+		UPDATE rubafreeboard SET rfbhit=rfbhit+1 WHERE rfbnum=#{param1}
+	</update>
 
 </mapper>

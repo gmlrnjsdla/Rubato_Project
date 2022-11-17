@@ -83,7 +83,7 @@
  			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
             <br>
-            <h2><%=sid %>님 안녕하세요!</h2>
+            <h3><%=sid %>님 안녕하세요!</h3>
             <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>
@@ -115,7 +115,7 @@
             <h2 id="board_title">자유 게시판</h2>
             <div id="total_search">
                 <div id="total">
-                    ▷ 총 5개의 게시물이 있습니다.
+                    ▷ 총 ${boardCount}개의 게시물이 있습니다.
                 </div>
                 <div id="search">
                     <div id="select_img">
@@ -147,7 +147,7 @@
                 <c:forEach items="${list}" var="list">
                 <tr>
                     <td class="col1">${list.rfbnum}</td>
-                    <td class="col2"><a href="board_view">${list.rfbtitle}</a></td>
+                    <td class="col2"><a href="board_view?rfbnum=${list.rfbnum}">${list.rfbtitle}</a></td>
                     <td class="col3">${list.rfbname}</td>
                     <td class="col4">${list.rfbdate}</td>
                     <td class="col5">${list.rfbhit}</td>

@@ -80,7 +80,7 @@
  			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
             <br>
-            <h2><%=sid %>님 안녕하세요!</h2>
+            <h3><%=sid %>님 안녕하세요!</h3>
             <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>

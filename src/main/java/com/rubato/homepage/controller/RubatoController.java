@@ -29,25 +29,6 @@ public class RubatoController {
 	}
 	
 	
-	
-	@RequestMapping(value="board_write")
-	public String board_write(HttpServletRequest request, Model model) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		HttpSession session = request.getSession();
-		String sid = (String)session.getAttribute("sessionId");
-		
-		RMemberDto dto = dao.memberInfoDao(sid);
-		model.addAttribute("minfo", dto);
-		
-		return "board_write";
-	}
-	
-	@RequestMapping(value="board_view")
-	public String board_view() {
-		return "board_view";
-	}
-	
 	@RequestMapping(value="member_join")
 	public String member_join() {
 		return "member_join";
@@ -116,6 +97,21 @@ public class RubatoController {
 		return "redirect:index";
 	}
 	
+	@RequestMapping(value="board_write")
+	public String board_write(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
+		
+		if(sid != null) {
+			RMemberDto dto = dao.memberInfoDao(sid);
+			model.addAttribute("minfo", dto);
+		}
+		
+		return "board_write";
+	}
+	
 	@RequestMapping(value="writeOk")
 	public String writeOk(HttpServletRequest request, Model model) {
 		
@@ -131,6 +127,7 @@ public class RubatoController {
 		return "redirect:board_list";
 	}
 	
+	
 	@RequestMapping(value="board_list")
 	public String board_list(HttpServletRequest request, Model model) {
 		
@@ -139,7 +136,24 @@ public class RubatoController {
 		
 		model.addAttribute("list", dtos);
 		
+		int boardCount = dtos.size();
+		model.addAttribute("boardCount", boardCount);
+		
 		return "board_list";
+	}
+	
+	@RequestMapping(value="board_view")
+	public String board_view(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbnum = request.getParameter("rfbnum");
+		
+		dao.uphitDao(rfbnum);
+		RFBoardDto dto = dao.boardViewDao(rfbnum);
+		
+		model.addAttribute("content", dto);
+		
+		return "board_view";
 	}
 	
 }
