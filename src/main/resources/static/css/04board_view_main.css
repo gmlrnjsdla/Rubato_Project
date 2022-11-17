@@ -1,0 +1,57 @@
+section#main h2#board_title{
+    margin-top:20px;
+    padding:0 0 5px 0;
+}
+
+#view_title_box{
+    border-top:solid 2px #aaaaaa;
+    background-color: #eeeeee;
+    padding:10px;
+    margin-top:10px;
+}
+
+#info{
+    margin-left:240px;
+}
+
+#boardTitle{
+    font-size:13px;
+    font-weight:bold;
+}
+
+#view_content{
+    line-height:150%;
+    padding: 10px;
+}
+
+#comment_box{
+    height:115px;
+    background-color:#efefef;
+    border-top:solid 1px #cccccc;
+    position:relative;
+}
+
+#comment_box textarea{
+    width:515px;
+    height:78px;
+    position:absolute;
+    top:15px;
+    left:150px;
+}
+
+#title_comment{
+    position:absolute;
+    top:15px;
+    left:15px;
+}
+
+#ok_ripple{
+    position:absolute;
+    top:15px;
+    left:675px;
+}
+
+#buttons{
+    text-align:right;
+    margin:10px 10px 0 0;
+}

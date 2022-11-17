@@ -1,0 +1,51 @@
+section#main h2#board_title{
+    margin-top:20px;
+    padding:0 0 5px 0;
+}
+
+#write_title{
+    text-align:center;
+    background-color:#eeeeee;
+    border-top:solid 2px #bbbbbb;
+    border-bottom:solid 1px #bbbbbb;
+    padding:5px;
+    margin-top:10px;
+}
+
+#main table{
+    border-collapse:collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+#main table td{
+    border-bottom:solid 1px #dddddd;
+    padding:7px;
+}
+
+.col1{
+    border-right:solid 1px #cccccc;
+    width:150px;
+    text-align:center;
+}
+
+#name input{
+    width:100px;
+    height:16px;
+    border:solid 1px #00ba2e;
+}
+
+#subject input{
+    width:550px;
+    height:16px;
+}
+
+#content textarea{
+    width:550px;
+    height: 200px;
+}
+
+#buttons{
+    text-align:right;
+    margin:10px 10px 0 0;
+}

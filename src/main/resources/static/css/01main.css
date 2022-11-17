@@ -1,0 +1,155 @@
+aside{
+    width:190px;
+    float:left;
+}
+
+aside #login_box {
+    width:186px;
+    height:120px;
+    border:solid 1px #dddddd;
+    border-radius:10px;
+    background-color:#f3f3f3;
+}
+
+#login_input{
+    float:left;
+}
+
+#login_input input{
+    width:100px;
+    height:20px;
+    border:solid 1px #dddddd;
+}
+
+#login_title{
+margin:10px 0 0 10px;
+}
+
+#input_button{
+    margin:10px 0 0 10px;
+}
+
+#login_btn{
+    margin-left:5px;
+}
+
+#join_search{
+    margin:10px 0 0 5px;
+}
+
+#guestbook{
+    width:190px;
+    height:135px;
+    border:solid 1px #cccccc;
+    border-radius:10px;
+    margin-top:15px;
+    background-color:#eeeeee;
+    box-shadow:2px 2px 5px #dddddd;
+}
+
+#guestbook_title{
+    width:165px;
+    border-bottom:solid 1px #cccccc;
+    padding:10px 0 0 5px;
+    margin:0 0 0 8px;
+}
+
+#guestbook li{
+    margin:5px 0 0 0;
+    list-style-image:url("../img/icon_blue.gif")
+}
+
+#guestbook ul{
+    margin:10px 0 0 40px;
+}
+
+section#main{
+    width:758px;
+    float:right;
+}
+
+#notice_free_youtube{
+    height:250px;
+    position:relative;
+    margin-top:10px;
+}
+
+#notice {
+    width:360px;
+    position:absolute;
+}
+
+.latest_title{
+    border-bottom:solid 1px #cccccc;
+    padding:3px;
+}
+
+.latest_img{
+    float:left;
+}
+
+.more{
+    float:right;
+}
+
+.image{
+    float:left;
+    margin:10px 0 0 20px;
+}
+
+.list{
+    float:right;
+}
+
+.list div{
+    float:left;
+}
+
+.latest_content li{
+    padding: 10px 0 10px 0;
+}
+
+.subject{
+    width:170px;
+}
+
+#freeBoard{
+    width:360px;
+    position:absolute;
+    top:120px;
+}
+
+#youtube{
+    width:365px;
+    height:250px;
+    position:absolute;
+    left:380px;
+}
+
+#youtube_img{
+    margin:10px 0 0 45px;
+}
+
+#gallery_box{
+    width:750px;
+    height:210px;
+    border:solid 1px #cccccc;
+    border-radius:10px;
+    box-shadow: 2px 2px 5px #dddddd;
+    margin: 10px 0 0 5px;
+}
+
+.items{
+    float:left;
+    margin-left:35px;
+    text-align:center;
+}
+
+#gallery_list{
+    padding:25px 0 0 20px;
+}
+
+.items li{
+    margin-top:5px;
+}
+

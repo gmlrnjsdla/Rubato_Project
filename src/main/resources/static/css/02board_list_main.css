@@ -1,0 +1,113 @@
+#board_title{
+    border-bottom:solid 1px #bbbbbb;
+    margin-top:20px;
+    padding:0 0 5px 0;
+}
+
+#total_search{
+    height:35px;
+    position:relative;
+}
+
+#total{
+    position:absolute;
+    top:10px;
+}
+
+#search{
+    position:absolute;
+    left:460px;
+}
+
+#select_img{
+    position:absolute;
+    top:10px;
+}
+
+#search_select{
+    position:absolute;
+    top:8px;
+    left:55px;
+    margin-left:3px;
+}
+
+#search_input{
+    position:absolute;
+    top:8px;
+    left:130px;
+}
+
+#search_btn{
+    position:absolute;
+    top:6px;
+    left:240px;
+}
+
+#search_input input{
+    width:100px;
+}
+
+section#main table{
+    border-collapse:collapse;
+    margin:0 auto;
+    width:100%;
+}
+
+section#main td{
+    border-bottom:solid 1px #cccccc;
+}
+
+section#main th{
+    border-top:solid 2px #aaaaaa;
+    background-color:#eeeeee;
+}
+
+section#main tr{
+    height:35px;
+}
+
+section#main .col2 a:link{
+    color:#444444;
+    text-decoration:none;
+}
+
+section#main .col2 a:visited{
+    color:#444444;
+    text-decoration:none;
+}
+
+section#main .col2 a:hover{
+    color:#444444;
+    text-decoration:underline;
+}
+
+section#main td.col1{
+    width:60px;
+    text-align:center;
+}
+
+section#main td.col3{
+    width:70px;
+    text-align:center;
+}
+
+section#main td.col4{
+    width:80px;
+    text-align:center;
+}
+
+section#main td.col5{
+    width:50px;
+    text-align:center;
+}
+
+#buttons .col1{
+    float:left;
+    margin-top:20px;
+    margin-left:300px;
+}
+
+#buttons .col2{
+    float:right;
+    margin:20px 10px 0 0;
+}

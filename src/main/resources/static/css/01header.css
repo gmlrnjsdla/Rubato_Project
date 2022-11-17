@@ -1,0 +1,47 @@
+header {
+    height:100px;
+    position:relative;
+
+}
+
+#logo {
+    position:absolute;
+    top:10px;
+    left:20px;
+}
+
+#top_menu {
+    position:absolute;
+    top:10px;
+    left:770px;
+}
+
+#main_menu {
+    position:absolute;
+    top:40px;
+    left:210px;
+    background-image:url("../img/main_menu_bg.png");
+    width:757px;
+    height:38px;
+}
+
+#main_menu li {
+    display:inline-block;
+    font-size:13px;
+    margin:10px 30px 0 50px;
+}
+
+#main_menu a:link {
+    color:#ffffff;
+    text-decoration:none;
+}
+
+#main_menu a:visited {
+    color:#ffffff;
+    text-decoration:none;
+}
+
+#main_menu a:hover {
+    color:#444444;
+    text-decoration:none;
+}
