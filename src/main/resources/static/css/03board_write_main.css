@@ -35,6 +35,12 @@ section#main h2#board_title{
     border:solid 1px #00ba2e;
 }
 
+#join input{
+    width:200px;
+    height:16px;
+    border:solid 1px #00ba2e;
+}
+
 #subject input{
     width:550px;
     height:16px;
