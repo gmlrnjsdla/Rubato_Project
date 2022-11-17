@@ -72,7 +72,7 @@
                 <h2 id="write_title">회원 정보 입력</h2>
                 
 	                <table>
-	                	<form action="checkUserId">
+	                	<form action="checkUserId" method="post">
 	                	<tr>
 	                        <td class="col1">아이디 확인</td>
 	                        <td>
@@ -82,7 +82,7 @@
 	                    </tr>
 	                    </form>
 	                    
-	                    <form action="joinOk" method="post">
+                    <form action="joinOk" method="post">
 	                	<tr id="join">
 	                        <td class="col1">아이디</td>
 	                        <td class="col2"><input type="text" name="mid">
@@ -105,7 +105,7 @@
                 			<input type="image" src="${pageContext.request.contextPath}/resources/img/ok.png">
                 			<a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
             			</div>
-                </form>
+                	</form>
             </div>
             
         </section>

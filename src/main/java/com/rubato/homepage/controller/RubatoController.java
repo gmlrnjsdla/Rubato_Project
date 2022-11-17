@@ -49,7 +49,7 @@ public class RubatoController {
 		return "redirect:index";
 	}
 	
-	@RequestMapping(value="checkUserId")
+	@RequestMapping(value="checkUserId", method = RequestMethod.POST)
 	public String checkUserId(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
@@ -112,7 +112,7 @@ public class RubatoController {
 		return "board_write";
 	}
 	
-	@RequestMapping(value="writeOk")
+	@RequestMapping(value="writeOk", method = RequestMethod.POST)
 	public String writeOk(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
