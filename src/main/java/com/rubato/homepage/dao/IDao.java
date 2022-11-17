@@ -1,5 +1,8 @@
 package com.rubato.homepage.dao;
 
+import java.util.ArrayList;
+
+import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
 
 public interface IDao {
@@ -13,5 +16,5 @@ public interface IDao {
 	
 	
 	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid);
-	
+	public ArrayList<RFBoardDto> listDao();
 }

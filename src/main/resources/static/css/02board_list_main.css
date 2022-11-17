@@ -81,6 +81,10 @@ section#main .col2 a:hover{
     text-decoration:underline;
 }
 
+section#main .col2{
+    padding-left:40px;
+}
+
 section#main td.col1{
     width:60px;
     text-align:center;

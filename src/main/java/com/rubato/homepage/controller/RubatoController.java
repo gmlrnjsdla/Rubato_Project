@@ -1,5 +1,7 @@
 package com.rubato.homepage.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.rubato.homepage.dao.IDao;
+import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
 
 @Controller
@@ -25,10 +28,7 @@ public class RubatoController {
 		return "index";
 	}
 	
-	@RequestMapping(value="board_list")
-	public String board_list() {
-		return "board_list";
-	}
+	
 	
 	@RequestMapping(value="board_write")
 	public String board_write(HttpServletRequest request, Model model) {
@@ -129,6 +129,17 @@ public class RubatoController {
 		dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
 		
 		return "redirect:board_list";
+	}
+	
+	@RequestMapping(value="board_list")
+	public String board_list(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		ArrayList<RFBoardDto> dtos = dao.listDao();
+		
+		model.addAttribute("list", dtos);
+		
+		return "board_list";
 	}
 	
 }

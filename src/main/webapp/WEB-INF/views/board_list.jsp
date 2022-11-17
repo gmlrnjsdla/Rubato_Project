@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,14 +144,15 @@
                     <th>일시</th>
                     <th>조회수</th>
                 </tr>
+                <c:forEach items="${list}" var="list">
                 <tr>
-                    <td class="col1">1</td>
-                    <td class="col2"><a href="board_view"> 까스통님의 선물인 보드카가 정말 독하네요!!!</a></td>
-                    <td class="col3">루바토</td>
-                    <td class="col4">2022-09-30</td>
-                    <td class="col5">15</td>
+                    <td class="col1">${list.rfbnum}</td>
+                    <td class="col2"><a href="board_view">${list.rfbtitle}</a></td>
+                    <td class="col3">${list.rfbname}</td>
+                    <td class="col4">${list.rfbdate}</td>
+                    <td class="col5">${list.rfbhit}</td>
                 </tr>
-                
+                </c:forEach>
             </table>        <!-- 게시판 목록 테이블 end -->
             <div id="buttons">
                 <div class="col1">
