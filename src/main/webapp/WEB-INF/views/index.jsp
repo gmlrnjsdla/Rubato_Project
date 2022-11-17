@@ -40,7 +40,7 @@
             </div>
             <div class="clear"></div>
             <div id="join_search">
-                <img src="${pageContext.request.contextPath}/resources/img/btn_join.gif">
+                <a href="member_join"><img src="${pageContext.request.contextPath}/resources/img/btn_join.gif"></a>
                 <img src="${pageContext.request.contextPath}/resources/img/btn_search.gif">
             </div>
         </article>  <!-- login box end -->

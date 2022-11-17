@@ -53,7 +53,7 @@ public class RubatoController {
 		
 		dao.memberJoinDao(mid, mpw, mname, memail);
 		
-		return "index";
+		return "redirect:index";
 	}
 	
 	
