@@ -17,7 +17,7 @@
     <header>    <!--header strat-->
         <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
         <nav id="top_menu">
-            HOME | LOGIN | JOIN | NOTICE
+            <a href="index">HOME</a> | <a href="index">LOGIN</a> | <a href="member_join">JOIN</a> | <a href="#">NOTICE</a>
         </nav>
         <nav id="main_menu">
             <ul>
@@ -70,11 +70,23 @@
             <h2 id="board_title">루바토 회원 가입</h2>
             <div>
                 <h2 id="write_title">회원 정보 입력</h2>
-                <form action="joinOk">
+                
 	                <table>
+	                	<form action="checkUserId">
+	                	<tr>
+	                        <td class="col1">아이디 확인</td>
+	                        <td>
+	                        	<input type="text" name="mid">&nbsp;
+	                        	<input type="submit" value="중복확인">
+	                        </td>
+	                    </tr>
+	                    </form>
+	                    
+	                    <form action="joinOk" method="post">
 	                	<tr id="join">
 	                        <td class="col1">아이디</td>
-	                        <td class="col2"><input type="text" name="mid"></td>
+	                        <td class="col2"><input type="text" name="mid">
+	                        </td>
 	                    </tr>
 	                    <tr id="join">
 	                        <td class="col1">비밀번호</td>

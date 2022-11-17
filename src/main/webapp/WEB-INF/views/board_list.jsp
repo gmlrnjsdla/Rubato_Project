@@ -17,7 +17,7 @@
     <header>    <!--header strat-->
         <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
         <nav id="top_menu">
-            HOME | LOGIN | JOIN | NOTICE
+            <a href="index">HOME</a> | <a href="index">LOGIN</a> | <a href="member_join">JOIN</a> | <a href="#">NOTICE</a>
         </nav>
         <nav id="main_menu">
             <ul>
@@ -30,23 +30,45 @@
         </nav>
     </header>   <!--header end-->
 
+    <% 
+		String sid = (String)session.getAttribute("sessionId");
+		if(sid == null){
+	%>
     <aside>     <!-- login box strat -->
         <article id="login_box">
             <img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
+            <form action="loginOk" method="post">
                 <ul id="login_input">
-                    <li><input type="text"></li>
-                    <li><input type="password"></li>
+                    <li><input type="text" name="mid"></li>
+                    <li><input type="password" name="mpw"></li>
                 </ul>
-                <img id="login_btn" src="${pageContext.request.contextPath}/resources/img/btn_login.gif">
+                <input type="image" id="login_btn" src="${pageContext.request.contextPath}/resources/img/btn_login.gif">
+            </form>
             </div>
             <div class="clear"></div>
             <div id="join_search">
-                <a href="member_join"> <img src="${pageContext.request.contextPath}/resources/img/btn_join.gif"></a>
+                <a href="member_join"><img src="${pageContext.request.contextPath}/resources/img/btn_join.gif"></a>
                 <img src="${pageContext.request.contextPath}/resources/img/btn_search.gif">
             </div>
         </article>  <!-- login box end -->
-
+    
+   	<%
+   	}else{
+ 	%>
+ 	<aside>
+ 		<article id="login_box">
+            <div id="input_button">
+            <br><br>
+            <h2><%=sid %>님 안녕하세요!</h2>
+            <br><br>
+            <a href="logout"><h3>LOGOUT</h3></a>
+            </div>
+        </article>  <!-- login box end -->
+	     
+	<%
+   	}
+	%>
         <nav id="sub_menu">     <!-- sub_menu start -->
             <ul>
                 <li><a href="board_list">+ 자유게시판</a></li>

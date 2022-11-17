@@ -45,3 +45,18 @@ header {
     color:#444444;
     text-decoration:none;
 }
+
+a:link{
+	color:#444444;
+    text-decoration:none;
+}
+
+a:visited{
+	color:#444444;
+    text-decoration:none;
+}
+
+a:hover{
+	color:#444444;
+    text-decoration:underline;
+}
