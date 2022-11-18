@@ -13,7 +13,7 @@ public interface IDao {
 	public String loginOkDao(String mid);
 	public RMemberDto memberInfoDao(String mid);
 	
-	
+//======================================회원 관련=========================================//
 	
 	
 	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid);
@@ -24,8 +24,14 @@ public interface IDao {
 	public void boardModifyDao(String rfbtitle, String rfbcontent, String rfbnum);
 	
 	
-	
+//======================================게시판 관련=========================================//	
 	
 	public void boardReplyDao(String rrcontent, String rrid, String rrorinum);
 	public ArrayList<RReplyDto> boardReplyListDao(String rrorinum);
+	public void boardReplyCountDao(String rfbnum);
+	public void replyDeleteDao(String rrnum);
+	public void replyDeleteCountDao(String rfbnum);
+	
+	
+//======================================댓글 관련=========================================//	
 }

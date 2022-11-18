@@ -135,7 +135,7 @@
             		<td>${rrlist.rrid}</td>
             		<td width="500" align="left" style="padding-left:20px;">${rrlist.rrcontent}</td>
             		<td>${rrlist.rrdate}</td>
-            		<td><a href="replyDelete?rrnum=${rrlist.rrnum}"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a></td>
+            		<td><a href="replyDelete?rrnum=${rrlist.rrnum}&rrorinum=${rrlist.rrorinum}&rrid=${rrlist.rrid}"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a></td>
             	</tr>
             </table>
                             

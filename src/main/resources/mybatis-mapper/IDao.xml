@@ -52,6 +52,7 @@
 		UPDATE rubafreeboard SET rfbtitle=#{param1},rfbcontent=#{param2} WHERE rfbnum=#{param3}
 	</update>
 
+	
 
 <!-- ==================================================================== -->
 
@@ -63,5 +64,17 @@
 	<select id="boardReplyListDao" resultType="com.rubato.homepage.dto.RReplyDto">
 		SELECT * FROM rubareply WHERE rrorinum=#{param1}
 	</select>
+	
+	<update id="boardReplyCountDao">
+		UPDATE rubafreeboard SET rfbreplycount=rfbreplycount+1 WHERE rfbnum=#{param1}
+	</update>
+	
+	<delete id="replyDeleteDao">
+		DELETE FROM rubareply WHERE rrnum=#{param1}
+	</delete>
 
+	<update id="replyDeleteCountDao">
+		UPDATE rubafreeboard SET rfbreplycount=rfbreplycount-1 WHERE rfbnum=#{param1}
+	</update>
+ 
 </mapper>

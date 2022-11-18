@@ -234,6 +234,8 @@ public class RubatoController {
 			
 			dao.boardReplyDao(rrcontent, rrid, rrorinum);
 			RFBoardDto dto = dao.boardViewDao(rrorinum);
+			dao.boardReplyCountDao(rrorinum);
+			
 			
 			model.addAttribute("content", dto);
 			
@@ -242,5 +244,55 @@ public class RubatoController {
 		}
 		return "board_view";
 	}
+	
+	@RequestMapping(value="replyDelete")
+	public String replyDelete(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
+		String rrid = request.getParameter("rrid");
+		String rrnum = request.getParameter("rrnum");
+		String rrorinum = request.getParameter("rrorinum");
+		
+		if(sid == null) {//참이면 로그인이 안된 상태
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('로그인하지 않으면 글을 삭제할 수 없습니다!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(!sid.equals(rrid)){
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('본인만 삭제할 수 있습니다!!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		}else {
+			dao.replyDeleteDao(rrnum);
+			dao.replyDeleteCountDao(rrorinum);
+			
+			RFBoardDto dto = dao.boardViewDao(rrorinum);
+			ArrayList<RReplyDto> rrdtos = dao.boardReplyListDao(rrorinum);
+			
+			model.addAttribute("content", dto);
+			model.addAttribute("rrlist", rrdtos);
+		}
+		
+		return "board_view";
+	}
+	
 	
 }
