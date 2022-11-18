@@ -147,7 +147,7 @@
                 <c:forEach items="${list}" var="list">
                 <tr>
                     <td class="col1">${list.rfbnum}</td>
-                    <td class="col2"><a href="board_view?rfbnum=${list.rfbnum}">${list.rfbtitle}</a></td>
+                    <td class="col2"><a href="board_view?rfbnum=${list.rfbnum}">${list.rfbtitle}&nbsp;(${list.rfbreplycount})</a></td>
                     <td class="col3">${list.rfbname}</td>
                     <td class="col4">${list.rfbdate}</td>
                     <td class="col5">${list.rfbhit}</td>

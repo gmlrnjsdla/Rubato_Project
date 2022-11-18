@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
+import com.rubato.homepage.dto.RReplyDto;
 
 public interface IDao {
 	
@@ -21,4 +22,10 @@ public interface IDao {
 	public void uphitDao(String rfbnum);
 	public void boardDeleteDao(String rfbnum);
 	public void boardModifyDao(String rfbtitle, String rfbcontent, String rfbnum);
+	
+	
+	
+	
+	public void boardReplyDao(String rrcontent, String rrid, String rrorinum);
+	public ArrayList<RReplyDto> boardReplyListDao(String rrorinum);
 }

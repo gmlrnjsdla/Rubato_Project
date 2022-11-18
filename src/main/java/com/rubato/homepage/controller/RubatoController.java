@@ -1,8 +1,11 @@
 package com.rubato.homepage.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.rubato.homepage.dao.IDao;
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
+import com.rubato.homepage.dto.RReplyDto;
 
 @Controller
 public class RubatoController {
@@ -158,6 +162,9 @@ public class RubatoController {
 		
 		model.addAttribute("content", dto);
 		
+		ArrayList<RReplyDto> rrdtos = dao.boardReplyListDao(rfbnum);
+		model.addAttribute("rrlist", rrdtos);
+		
 		return "board_view";
 	}
 	
@@ -179,7 +186,9 @@ public class RubatoController {
 		String rfbnum = request.getParameter("rfbnum");
 		
 		RFBoardDto dto = dao.boardViewDao(rfbnum);
+		String rfbuserid = dto.getRfbuserid();
 		
+		model.addAttribute("rfbuserid", rfbuserid);
 		model.addAttribute("content", dto);
 		
 		return "board_modify";
@@ -196,6 +205,42 @@ public class RubatoController {
 		dao.boardModifyDao(rfbtitle, rfbcontent, rfbnum);
 		
 		return "redirect:board_list";
+	}
+	
+	@RequestMapping(value="replyOk")
+	public String replyOk(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
+		
+		if(sid == null) {//참이면 로그인이 안된 상태
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('로그인하지 않으면 글을 쓰실수 없습니다!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else {
+			String rrid = request.getParameter("rrid");
+			String rrcontent = request.getParameter("rrcontent");
+			String rrorinum = request.getParameter("rrorinum");
+			
+			dao.boardReplyDao(rrcontent, rrid, rrorinum);
+			RFBoardDto dto = dao.boardViewDao(rrorinum);
+			
+			model.addAttribute("content", dto);
+			
+			ArrayList<RReplyDto> rrdtos = dao.boardReplyListDao(rrorinum);
+			model.addAttribute("rrlist", rrdtos);
+		}
+		return "board_view";
 	}
 	
 }

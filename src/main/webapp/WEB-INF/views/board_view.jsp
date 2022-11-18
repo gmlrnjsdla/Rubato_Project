@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/01footer.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/02board_left.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/04board_view_main.css">
+
+	<style>
+		table{
+			border:1px solid #dddddd;
+		}
+	</style>
 </head>
 <body>
 <%
@@ -82,7 +89,7 @@
  			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
             <br>
-            <h2><%=sid %>님 안녕하세요!</h2>
+            <h3><%=sid %>님 안녕하세요!</h3>
             <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>
@@ -119,13 +126,32 @@
                 </span>
             </div>
             <P id="view_content">
-                ${content.rfbcontent}
+                ${content.rfbcontent}<br><br><br>
             </P>
+            
+            <c:forEach items="${rrlist}" var="rrlist">
+            <table border="1" cellpadding="0" cellspacing="0" width="760">
+            	<tr align="center" bgcolor="#dddddd">
+            		<td>${rrlist.rrid}</td>
+            		<td width="500" align="left" style="padding-left:20px;">${rrlist.rrcontent}</td>
+            		<td>${rrlist.rrdate}</td>
+            		<td><a href="replyDelete?rrnum=${rrlist.rrnum}"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a></td>
+            	</tr>
+            </table>
+                            
+            </c:forEach>
+            
+            
+            <form action="replyOk">
             <div id="comment_box">
+            	<input type="hidden" name="rrid" value="<%=sid%>">
+            	<input type="hidden" name="rrorinum" value="${content.rfbnum}">
                 <img id="title_comment" src="${pageContext.request.contextPath}/resources/img/title_comment.gif">
-                <textarea></textarea>
-                <img id="ok_ripple" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">
+                <textarea name="rrcontent"></textarea>
+                <input type="image" id="ok_ripple" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">
             </div>
+            </form>
+            
             <div id="buttons">
                 <a href="board_delete?rfbnum=${content.rfbnum}" onclick="return confirm('삭제하면 다시 복구할 수 없습니다.\n정말 삭제하시겠습니까?')">
                 	<img src="${pageContext.request.contextPath}/resources/img/delete.png">

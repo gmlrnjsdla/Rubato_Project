@@ -15,6 +15,7 @@
 <body>
 <%
 		String sid = (String)session.getAttribute("sessionId");
+		String rfbuserid = (String)request.getAttribute("rfbuserid");
 		if(sid == null){
 	%>
 	<script language="JavaScript">
@@ -60,6 +61,13 @@
         </article>  <!-- login box end -->
     
    	<%
+   	}else if(!sid.equals(rfbuserid)){
+ 	%>
+   		<script language="JavaScript">
+			alert("본인 글만 수정할 수 있습니다!")
+			history.go(-1);
+		</script>
+	<%
    	}else{
  	%>
  	<div id="wrap">
@@ -118,9 +126,9 @@
             <h2 id="board_title">자유 게시판</h2>
             <div>
                 <h2 id="write_title">글 수정</h2>
-                <form action="writeOk" method="post">
+                <form action="modifyOk" method="post">
                 <table >
-                	<input type="hidden" name="rfbuserid" value="${content.rfbuserid}">
+                	<input type="hidden" name="rfbnum" value="${content.rfbnum}">
                     <tr id="name">
                         <td class="col1">이름</td>
                         <td class="col2"><input type="text" name="rfbname" value="${content.rfbname}" readonly="true"></td>
