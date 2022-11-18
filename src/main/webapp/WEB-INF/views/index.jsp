@@ -145,7 +145,7 @@
                 <article id="freeBoard">    <!-- 자유게시판 -->
                     <div class="latest_title">
                         <img class="latest_img" src="${pageContext.request.contextPath}/resources/img/latest2.gif">
-                        <img class="more" src="${pageContext.request.contextPath}/resources/img/more.gif">
+                        <a href="board_list"><img class="more" src="${pageContext.request.contextPath}/resources/img/more.gif"></a>
                         <div class="clear"></div>
                     </div>
                     <div class="latest_content">

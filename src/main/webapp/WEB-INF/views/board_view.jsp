@@ -127,7 +127,9 @@
                 <img id="ok_ripple" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">
             </div>
             <div id="buttons">
-                <a href="board_delete?rfbnum=${content.rfbnum}"><img src="${pageContext.request.contextPath}/resources/img/delete.png"></a>
+                <a href="board_delete?rfbnum=${content.rfbnum}" onclick="return confirm('삭제하면 다시 복구할 수 없습니다.\n정말 삭제하시겠습니까?')">
+                	<img src="${pageContext.request.contextPath}/resources/img/delete.png">
+                </a>
                 <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
                 <a href="board_write"><img src="${pageContext.request.contextPath}/resources/img/write.png"></a>
             </div>
