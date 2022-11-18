@@ -10,13 +10,17 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/01main.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/01footer.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/02board_left.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/04board_view_main.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/03board_write_main.css">
 </head>
 <body>
 <%
 		String sid = (String)session.getAttribute("sessionId");
 		if(sid == null){
 	%>
+	<script language="JavaScript">
+			alert("로그인 후 이용해주세요!")
+			history.go(-1);
+	</script>
   <div id="wrap">
     <header>    <!--header strat-->
         <a href="index"><img id="logo" src="${pageContext.request.contextPath}/resources/img/logo.png"></a>
@@ -82,7 +86,7 @@
  			<img id="login_title" src="${pageContext.request.contextPath}/resources/img/ttl_login.png">
             <div id="input_button">
             <br>
-            <h2><%=sid %>님 안녕하세요!</h2>
+            <h3><%=sid %>님 안녕하세요!</h3>
             <br>
             <a href="logout"><h3>LOGOUT</h3></a>
             </div>
@@ -112,27 +116,34 @@
         <section id="main">
             <img src="${pageContext.request.contextPath}/resources/img/comm.gif">
             <h2 id="board_title">자유 게시판</h2>
-            <div id="view_title_box">
-                <span id="boardTitle">${content.rfbtitle}</span>
-                <span id="info">
-                	${content.rfbname} | 조회수 : ${content.rfbhit} | ${content.rfbdate}
-                </span>
-            </div>
-            <P id="view_content">
-                ${content.rfbcontent}
-            </P>
-            <div id="comment_box">
-                <img id="title_comment" src="${pageContext.request.contextPath}/resources/img/title_comment.gif">
-                <textarea></textarea>
-                <img id="ok_ripple" src="${pageContext.request.contextPath}/resources/img/ok_ripple.gif">
+            <div>
+                <h2 id="write_title">글 수정</h2>
+                <form action="writeOk" method="post">
+                <table >
+                	<input type="hidden" name="rfbuserid" value="${content.rfbuserid}">
+                    <tr id="name">
+                        <td class="col1">이름</td>
+                        <td class="col2"><input type="text" name="rfbname" value="${content.rfbname}" readonly="true"></td>
+                    </tr>
+                    <tr id="subject">
+                        <td class="col1">제목</td>
+                        <td class="col2"><input type="text" name="rfbtitle" value="${content.rfbtitle}"></td>
+                    </tr>
+                    <tr id="content">
+                        <td class="col1">내용</td>
+                        <td class="col2"><textarea name="rfbcontent">${content.rfbcontent}</textarea></td>
+                    </tr>
+                    <tr id="upload">
+                        <td class="col1">업로드 파일</td>
+                        <td class="col2"><input type="file" name="files"></td>
+                    </tr>
+                </table>
             </div>
             <div id="buttons">
-                <a href="board_delete?rfbnum=${content.rfbnum}" onclick="return confirm('삭제하면 다시 복구할 수 없습니다.\n정말 삭제하시겠습니까?')">
-                	<img src="${pageContext.request.contextPath}/resources/img/delete.png">
-                </a>
+                <input type="image" src="${pageContext.request.contextPath}/resources/img/ok.png">
                 <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
-                <a href="board_modify?rfbnum=${content.rfbnum}"><img src="${pageContext.request.contextPath}/resources/img/modify.png"></a>
             </div>
+            </form>
         </section>
     </main>
     <div class="clear"></div>

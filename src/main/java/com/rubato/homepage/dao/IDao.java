@@ -20,4 +20,5 @@ public interface IDao {
 	public RFBoardDto boardViewDao(String rfbnum);
 	public void uphitDao(String rfbnum);
 	public void boardDeleteDao(String rfbnum);
+	public void boardModifyDao(String rfbtitle, String rfbcontent, String rfbnum);
 }

@@ -172,4 +172,30 @@ public class RubatoController {
 		return "redirect:board_list";
 	}
 	
+	@RequestMapping(value="board_modify")
+	public String board_modify(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbnum = request.getParameter("rfbnum");
+		
+		RFBoardDto dto = dao.boardViewDao(rfbnum);
+		
+		model.addAttribute("content", dto);
+		
+		return "board_modify";
+	}
+	
+	@RequestMapping(value="modifyOk")
+	public String modifyOk(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbnum = request.getParameter("rfbnum");
+		String rfbtitle = request.getParameter("rfbtitle");
+		String rfbcontent = request.getParameter("rfbcontent");
+		
+		dao.boardModifyDao(rfbtitle, rfbcontent, rfbnum);
+		
+		return "redirect:board_list";
+	}
+	
 }

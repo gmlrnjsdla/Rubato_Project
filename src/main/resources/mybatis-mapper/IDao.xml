@@ -47,5 +47,9 @@
 	<delete id="boardDeleteDao">
 		DELETE FROM rubafreeboard WHERE rfbnum=#{param1}
 	</delete>
+	
+	<update id="boardModifyDao">
+		UPDATE rubafreeboard SET rfbtitle=#{param1},rfbcontent=#{param2} WHERE rfbnum=#{param3}
+	</update>
 
 </mapper>
