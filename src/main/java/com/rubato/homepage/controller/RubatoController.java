@@ -27,6 +27,16 @@ public class RubatoController {
 	private SqlSession sqlSession;
 	
 	
+	@RequestMapping(value="/")
+	public String home(Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
+		model.addAttribute("list", dtos);
+		
+		return "index";
+	}
+	
 	@RequestMapping(value="index")
 	public String index(Model model) {
 		
@@ -294,5 +304,18 @@ public class RubatoController {
 		return "board_view";
 	}
 	
+	
+	
+	@RequestMapping(value="search_list")
+	public String search_list(HttpServletRequest request, Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbtitle = request.getParameter("searchKey");
+		ArrayList<RFBoardDto> dtos = dao.rfbSearchTitleList(rfbtitle);
+		
+		model.addAttribute("list", dtos);
+		
+		return "board_list";
+	}
 	
 }

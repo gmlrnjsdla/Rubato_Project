@@ -52,7 +52,9 @@
 		UPDATE rubafreeboard SET rfbtitle=#{param1},rfbcontent=#{param2} WHERE rfbnum=#{param3}
 	</update>
 
-	
+	<select id="rfbSearchTitleList" resultType="com.rubato.homepage.dto.RFBoardDto">
+		SELECT * FROM rubafreeboard WHERE rfbtitle= LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
+	</select>
 
 <!-- ==================================================================== -->
 
