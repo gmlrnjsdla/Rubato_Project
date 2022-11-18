@@ -24,7 +24,12 @@ public class RubatoController {
 	
 	
 	@RequestMapping(value="index")
-	public String index() {
+	public String index(Model model) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
+		model.addAttribute("list", dtos);
+		
 		return "index";
 	}
 	
@@ -132,7 +137,7 @@ public class RubatoController {
 	public String board_list(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		ArrayList<RFBoardDto> dtos = dao.listDao();
+		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
 		
 		model.addAttribute("list", dtos);
 		
@@ -154,6 +159,17 @@ public class RubatoController {
 		model.addAttribute("content", dto);
 		
 		return "board_view";
+	}
+	
+	@RequestMapping(value="board_delete")
+	public String board_delete(HttpServletRequest request) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbnum = request.getParameter("rfbnum");
+		
+		dao.boardDeleteDao(rfbnum);
+		
+		return "redirect:board_list";
 	}
 	
 }

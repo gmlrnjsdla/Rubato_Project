@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,26 +151,24 @@
                     <div class="latest_content">
                         <img class="image" src="${pageContext.request.contextPath}/resources/img/book_pen.gif">
                         <ul class="list">
-                            <li>
-                                <div class="subject">까스통님의 선물인 보드카...</div>
-                                <div class="date">2022-09-30</div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                                <div class="subject">까스통님의 선물인 보드카...</div>
-                                <div class="date">2022-09-30</div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                                <div class="subject">까스통님의 선물인 보드카...</div>
-                                <div class="date">2022-09-30</div>
-                                <div class="clear"></div>
-                            </li>
-                            <li>
-                                <div class="subject">까스통님의 선물인 보드카...</div>
-                                <div class="date">2022-09-30</div>
-                                <div class="clear"></div>
-                            </li>
+                        	<c:forEach items="${list }" var="list" begin="0" end="3">
+	                            <li>
+                                	<c:choose>
+                                		<c:when test="${list.rfbtitle.length() > 12}">
+	                                		<div class="subject">
+	                                			<a href="board_view?rfbnum=${list.rfbnum }">${list.rfbtitle.substring(0,11)}...</a>
+	                               			</div>
+                                		</c:when>
+                                		<c:otherwise>
+                                			<div class="subject">
+	                                			<a href="board_view?rfbnum=${list.rfbnum }">${list.rfbtitle}</a>
+	                               			</div>
+                                		</c:otherwise>
+                                	</c:choose>
+	                                <div class="date">${list.rfbdate.substring(0,10) }</div>
+	                                <div class="clear"></div>
+	                            </li>
+                            </c:forEach>
                         </ul>
                     </div>
                 </article>      <!-- 자유게시판 끝 -->

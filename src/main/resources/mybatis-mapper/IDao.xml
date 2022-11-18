@@ -32,7 +32,7 @@
 		VALUES(rfb_seq.nextval, #{param1},#{param2},#{param3},0,#{param4},0)
 	</select>
 	
-	<select id="listDao" resultType="com.rubato.homepage.dto.RFBoardDto">
+	<select id="rfblistDao" resultType="com.rubato.homepage.dto.RFBoardDto">
 		SELECT * FROM rubafreeboard ORDER BY rfbnum DESC
 	</select>
 	
@@ -43,5 +43,9 @@
 	<update id="uphitDao">
 		UPDATE rubafreeboard SET rfbhit=rfbhit+1 WHERE rfbnum=#{param1}
 	</update>
+	
+	<delete id="boardDeleteDao">
+		DELETE FROM rubafreeboard WHERE rfbnum=#{param1}
+	</delete>
 
 </mapper>

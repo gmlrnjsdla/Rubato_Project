@@ -16,7 +16,8 @@ public interface IDao {
 	
 	
 	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid);
-	public ArrayList<RFBoardDto> listDao();
+	public ArrayList<RFBoardDto> rfblistDao();
 	public RFBoardDto boardViewDao(String rfbnum);
 	public void uphitDao(String rfbnum);
+	public void boardDeleteDao(String rfbnum);
 }
