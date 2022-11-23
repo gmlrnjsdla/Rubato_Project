@@ -18,7 +18,7 @@ public interface IDao {
 	
 	
 	
-	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid);
+	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid, int filecount);
 	public ArrayList<RFBoardDto> rfblistDao();
 	public RFBoardDto boardViewDao(String rfbnum);
 	public void uphitDao(String rfbnum);
@@ -45,5 +45,6 @@ public interface IDao {
 	public void fileInfoInsert(int boardnum, String fileoriname, String filename, String fileextension, String fileurl);
 	public ArrayList<RFBoardDto> boardLatestInfoDao(String rfbuserid);
 	public FileDto getfileInfoDao(String rfbnum);
+	public void fileCountDao(int boardnum);
 //======================================파일 관련=========================================//
 }

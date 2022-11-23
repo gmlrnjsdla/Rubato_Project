@@ -145,9 +145,9 @@ public class RubatoController {
 		String rfbcontent = request.getParameter("rfbcontent");
 		
 		if(files.isEmpty()) { //파일의 첨부여부 확인
-			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid, 0);
 		} else {
-			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid, 1);
 			ArrayList<RFBoardDto> latestdtos = dao.boardLatestInfoDao(sid);
 			RFBoardDto dto = latestdtos.get(0);
 			int rfbnum = dto.getRfbnum();
@@ -185,7 +185,6 @@ public class RubatoController {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
-		
 		model.addAttribute("list", dtos);
 		
 		int boardCount = dtos.size();

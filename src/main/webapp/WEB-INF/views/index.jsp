@@ -156,13 +156,13 @@
 	                            <li>
                                 	<c:choose>
                                 	
-                                		<c:when test="${fn:length(list.rfbtitle) > 11}">
+                                		<c:when test="${fn:length(list.rfbtitle) > 12}">
 	                                		<div class="subject">
 	                                			<a href="board_view?rfbnum=${list.rfbnum }">
 	                                				<!-- 
 	                                				<c:out value="${fn:substring(list.rfbtitle,0,12) }"></c:out>...
 	                                				 -->
-	                                				${list.rfbtitle.substring(0,10)}...
+	                                				${list.rfbtitle.substring(0,11)}...
 	                                				<c:if test="${list.rfbreplycount != 0}">
                    										 &nbsp;&nbsp;[&nbsp;${list.rfbreplycount}&nbsp;]
                     								</c:if>

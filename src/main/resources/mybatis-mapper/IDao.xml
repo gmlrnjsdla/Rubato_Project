@@ -28,8 +28,8 @@
 	
 	
 	<select id="rfbWriteDao">
-		INSERT INTO rubafreeboard(rfbnum, rfbname, rfbtitle, rfbcontent,  rfbhit, rfbuserid, rfbreplycount) 
-		VALUES(rfb_seq.nextval, #{param1},#{param2},#{param3},0,#{param4},0)
+		INSERT INTO rubafreeboard(rfbnum, rfbname, rfbtitle, rfbcontent,  rfbhit, rfbuserid, rfbreplycount, filecount) 
+		VALUES(rfb_seq.nextval, #{param1},#{param2},#{param3},0,#{param4},0,#{param5})
 	</select>
 	
 	<select id="rfblistDao" resultType="com.rubato.homepage.dto.RFBoardDto">
@@ -102,4 +102,5 @@
 	<select id="getfileInfoDao" resultType="com.rubato.homepage.dto.FileDto">
 		SELECT * FROM rubafiles WHERE boardnum=#{param1}
 	</select>
+	
 </mapper>

@@ -153,6 +153,9 @@
                    	<c:if test="${list.rfbreplycount != 0}">
                     &nbsp;&nbsp;[&nbsp;${list.rfbreplycount}&nbsp;]
                     </c:if>
+                    <c:if test="${list.filecount == 1}">
+                    &nbsp;&nbsp;<img width="35" src="${pageContext.request.contextPath}/resources/img/file.png">
+                    </c:if>
                     </td>
                     <td class="col3">${list.rfbname}</td>
                     <td class="col4">${list.rfbdate}</td>

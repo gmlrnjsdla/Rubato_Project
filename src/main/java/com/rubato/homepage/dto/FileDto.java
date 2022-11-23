@@ -14,4 +14,5 @@ public class FileDto {
 	private String filename;		//첨부된 파일의 변경된 랜덤 이름
 	private String fileextension;	//첨부된 파일의 확장자
 	private String fileurl;			//첨부된 파일이 실제로 저장된 서버의 저장경로
+	
 }
