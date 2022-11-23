@@ -127,7 +127,33 @@
             </div>
             <P id="view_content">
                 ${content.rfbcontent}<br><br><br>
-            </P>
+            </p>
+                <%
+                	String filename = (String)request.getAttribute("filename");
+                	
+                	
+                	if(filename!=null){
+                		String fileextension = (String)request.getAttribute("fileextension");
+                		if(fileextension.equals("png") || fileextension.equals("jpg") || fileextension.equals("bmp") || fileextension.equals("gif")){
+             	%>
+                    		<p id=file_info">
+                    			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}">${fileoriname}</a><br><br></h3>
+                    			<img width="100" src="${pageContext.request.contextPath}/resources/uploadfiles/${filename}"><br><br>
+                    		</P>
+                <%
+                    	}else{
+            	%>		
+		            		<p id=file_info">
+		            			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}">${fileoriname}</a><br><br></h3>
+		            		</P>
+            	<%
+                    	}
+                	}
+                %>
+                
+            
+            
+            
             
             <c:forEach items="${rrlist}" var="rrlist">
             <table border="1" cellpadding="0" cellspacing="0" width="760">

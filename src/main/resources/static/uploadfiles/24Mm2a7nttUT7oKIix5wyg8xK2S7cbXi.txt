@@ -1,0 +1,64 @@
+* SpringBoot 
+
+spring.io 에서 설치 
+
+preferences - General - Workspace - utf-8변경
+preferences - General - WebBrowser - chrome변경
+
+
+// 프로젝트 생성
+File - new - Spring Starter Project
+
+
+// 의존설정
+Spring Web
+Spring Boot DevTools
+
+-finish-
+
+=========================================
+
+// dependency 설정추가시
+build.gradle - 설정추가 - 저장 - 우클릭 - gradle - refresh gradle project
+
+
+# ~~~~Application.java 절대 삭제 금지
+# application.properties 설정파일(DB설정 등..)
+
+
+// JSP사용을 위한 plugin 설치 (최초 한번)
+help - eclipse Marketplace - eclipse web 검색 
+-Eclipse Enterprise Java and Web Developer Tools 3.25 install
+-기본값 그대로 confirm - yes - 동의 체크 후 finish
+
+
+window - Preferences - Web - css, html, jsp - utf-8변경
+
+
+// build.gradle (jsp 의존설정)
+
+implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+implementation 'javax.servlet:jstl'
+저장 후 우클릭 gradle - refresh ~~ 필수
+
+
+main - webapp - WEB_INF - views 폴더 생성
+
+
+// application.properties 설정
+
+#서버 포트 설정
+server.port = 8888
+
+#SpringBoot JSP 설정
+spring.mvc.view.prefix=/WEB_INF/views/
+spring.mvc.view.suffix=.jsp
+spring.mvc.static-path-pattern=/resources/**
+
+* (save as utf-8)
+
+// 실행 
+프로젝트폴더 우클릭 Run as - 4spring boot app(서버 시작)
+-Boot Dashboard 지구모양 
+
+

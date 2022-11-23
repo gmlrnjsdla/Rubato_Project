@@ -87,4 +87,19 @@
 		UPDATE rubafreeboard SET rfbreplycount=rfbreplycount-1 WHERE rfbnum=#{param1}
 	</update>
  
+ 
+ <!-- ==================================================================== -->
+ 
+ 	<insert id="fileInfoInsert">
+ 		INSERT INTO rubafiles (filenum, boardnum, fileoriname, filename, fileextension, fileurl)
+ 		VALUES(file_seq.nextval,#{param1},#{param2},#{param3},#{param4},#{param5})
+ 	</insert>
+ 
+ 	<select id="boardLatestInfoDao" resultType="com.rubato.homepage.dto.RFBoardDto">
+		SELECT * FROM rubafreeboard WHERE rfbuserid=#{param1} ORDER BY rfbnum DESC
+	</select>
+	
+	<select id="getfileInfoDao" resultType="com.rubato.homepage.dto.FileDto">
+		SELECT * FROM rubafiles WHERE boardnum=#{param1}
+	</select>
 </mapper>

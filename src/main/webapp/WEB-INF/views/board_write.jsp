@@ -118,7 +118,7 @@
             <h2 id="board_title">자유 게시판</h2>
             <div>
                 <h2 id="write_title">글쓰기</h2>
-                <form action="writeOk" method="post">
+                <form action="writeOk" method="post" enctype="multipart/form-data">
                 <table >
                 	<input type="hidden" name="rfbuserid" value="${minfo.mid}">
                     <tr id="name">

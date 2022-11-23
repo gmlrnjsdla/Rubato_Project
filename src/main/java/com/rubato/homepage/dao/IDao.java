@@ -2,6 +2,7 @@ package com.rubato.homepage.dao;
 
 import java.util.ArrayList;
 
+import com.rubato.homepage.dto.FileDto;
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
 import com.rubato.homepage.dto.RReplyDto;
@@ -13,7 +14,6 @@ public interface IDao {
 	public String loginOkDao(String mid);
 	public RMemberDto memberInfoDao(String mid);
 //======================================회원 관련=========================================//
-	
 	
 	
 	
@@ -38,5 +38,12 @@ public interface IDao {
 	public void boardReplyCountDao(String rfbnum);
 	public void replyDeleteDao(String rrnum);
 	public void replyDeleteCountDao(String rfbnum);
-//======================================댓글 관련=========================================//	
+//======================================댓글 관련=========================================//
+	
+
+	
+	public void fileInfoInsert(int boardnum, String fileoriname, String filename, String fileextension, String fileurl);
+	public ArrayList<RFBoardDto> boardLatestInfoDao(String rfbuserid);
+	public FileDto getfileInfoDao(String rfbnum);
+//======================================파일 관련=========================================//
 }

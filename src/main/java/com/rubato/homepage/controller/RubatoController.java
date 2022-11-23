@@ -1,5 +1,6 @@
 package com.rubato.homepage.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -8,14 +9,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.rubato.homepage.dao.IDao;
+import com.rubato.homepage.dto.FileDto;
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
 import com.rubato.homepage.dto.RReplyDto;
@@ -127,16 +133,48 @@ public class RubatoController {
 	}
 	
 	@RequestMapping(value="writeOk", method = RequestMethod.POST)
-	public String writeOk(HttpServletRequest request, Model model) {
+	public String writeOk(HttpServletRequest request, Model model, @RequestPart MultipartFile files) throws IllegalStateException, IOException {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
 		
 		String rfbuserid = request.getParameter("rfbuserid");
 		String rfbname = request.getParameter("rfbname");
 		String rfbtitle = request.getParameter("rfbtitle");
 		String rfbcontent = request.getParameter("rfbcontent");
 		
-		dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+		if(files.isEmpty()) { //파일의 첨부여부 확인
+			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+		} else {
+			dao.rfbWriteDao(rfbname, rfbtitle, rfbcontent, rfbuserid);
+			ArrayList<RFBoardDto> latestdtos = dao.boardLatestInfoDao(sid);
+			RFBoardDto dto = latestdtos.get(0);
+			int rfbnum = dto.getRfbnum();
+			
+			
+			//파일 첨부
+			String fileoriname = files.getOriginalFilename(); //첨부된 파일의 원래 이름
+			String fileextension = FilenameUtils.getExtension(fileoriname).toLowerCase();
+			//첨부된 파일의 확장자 추출 후 소문자로 강제 변경
+			File destinationFile; //java.io 패키지 제공 클래스 임포트
+			String destinationFileName; //실제 서버에 저장된 파일의 변경된 이름이 저장될 변수 선언
+			String fileurl = "C:/SpringBoot_Workspace/Rubato_Project/src/main/resources/static/uploadfiles/";
+			// 반드시 마지막에 / 붙이기!!!!!!!!!!
+			//첨부된 파일이 저장될 서버의 실제 폴더 경로
+			
+			do {
+			destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileextension;
+			// 알파벳 대소문자와 숫자를 포함한 랜덤 32자 문자열 생성 후 . 을 구분자로 원본파일의 확장자를 연결 -> 실제 서버에 저장될 파일의 이름
+			destinationFile = new File(fileurl + destinationFileName);
+			}while(destinationFile.exists());
+			
+			
+			destinationFile.getParentFile().mkdir();
+			files.transferTo(destinationFile);
+			
+			dao.fileInfoInsert(rfbnum, fileoriname, destinationFileName, fileextension, fileurl);
+			}
 		
 		return "redirect:board_list";
 	}
@@ -170,6 +208,15 @@ public class RubatoController {
 		ArrayList<RReplyDto> rrdtos = dao.boardReplyListDao(rfbnum);
 		model.addAttribute("rrlist", rrdtos);
 		
+		FileDto fdto = dao.getfileInfoDao(rfbnum);
+		if(fdto !=null) {
+			String fileoriname = fdto.getFileoriname();
+			String filename = fdto.getFilename();
+			String fileextension = fdto.getFileextension();
+			model.addAttribute("filename", filename);
+			model.addAttribute("fileoriname", fileoriname);
+			model.addAttribute("fileextension", fileextension);
+		}
 		return "board_view";
 	}
 	
@@ -274,6 +321,16 @@ public class RubatoController {
 			
 			ArrayList<RReplyDto> rrdtos = dao.boardReplyListDao(rrorinum);
 			model.addAttribute("rrlist", rrdtos);
+			
+			FileDto fdto = dao.getfileInfoDao(rrorinum);
+			if(fdto !=null) {
+				String fileoriname = fdto.getFileoriname();
+				String filename = fdto.getFilename();
+				String fileextension = fdto.getFileextension();
+				model.addAttribute("filename", filename);
+				model.addAttribute("fileoriname", fileoriname);
+				model.addAttribute("fileextension", fileextension);
+			}
 		}
 		return "board_view";
 	}
