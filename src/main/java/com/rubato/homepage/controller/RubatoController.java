@@ -29,12 +29,7 @@ public class RubatoController {
 	
 	@RequestMapping(value="/")
 	public String home(Model model) {
-		
-		IDao dao = sqlSession.getMapper(IDao.class);
-		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
-		model.addAttribute("list", dtos);
-		
-		return "index";
+		return "redirect:index";
 	}
 	
 	@RequestMapping(value="index")
@@ -179,13 +174,41 @@ public class RubatoController {
 	}
 	
 	@RequestMapping(value="board_delete")
-	public String board_delete(HttpServletRequest request) {
+	public String board_delete(HttpServletRequest request, HttpServletResponse response) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
 		String rfbnum = request.getParameter("rfbnum");
 		
-		dao.boardDeleteDao(rfbnum);
+		HttpSession session = request.getSession();
+		String sid = (String)session.getAttribute("sessionId");
+		String rfbuserid = request.getParameter("rfbuserid");
 		
+		if(sid == null) {//참이면 로그인이 안된 상태
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('로그인하지 않으면 글을 삭제할 수 없습니다!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}else if(!sid.equals(rfbuserid)){
+			PrintWriter out;
+			try {
+				response.setContentType("text/html;charset=utf-8");
+				out = response.getWriter();
+				out.println("<script>alert('본인 글만 삭제할 수 있습니다!!');history.go(-1);</script>");
+				out.flush();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			dao.boardDeleteDao(rfbnum);
+		}
 		return "redirect:board_list";
 	}
 	
@@ -310,11 +333,23 @@ public class RubatoController {
 	public String search_list(HttpServletRequest request, Model model) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		String rfbtitle = request.getParameter("searchKey");
-		ArrayList<RFBoardDto> dtos = dao.rfbSearchTitleList(rfbtitle);
+		String searchOption = request.getParameter("searchOption");
+		String searchKey = request.getParameter("searchKey");
 		
+		ArrayList<RFBoardDto> dtos = null;
+		
+		if(searchOption.equals("title")) {
+			dtos = dao.rfbSearchTitleList(searchKey);
+		}else if(searchOption.equals("content")) {
+			dtos = dao.rfbSearchContentList(searchKey);
+		}else {
+			dtos = dao.rfbSearchWriterList(searchKey);
+			model.addAttribute("list", dtos);
+		}
+		
+		int boardCount = dtos.size();
+		model.addAttribute("boardCount", boardCount);
 		model.addAttribute("list", dtos);
-		
 		return "board_list";
 	}
 	

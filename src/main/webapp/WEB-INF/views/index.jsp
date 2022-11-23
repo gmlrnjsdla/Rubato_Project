@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -154,16 +155,29 @@
                         	<c:forEach items="${list }" var="list" begin="0" end="3">
 	                            <li>
                                 	<c:choose>
-                                		<c:when test="${list.rfbtitle.length() > 12}">
+                                	
+                                		<c:when test="${fn:length(list.rfbtitle) > 13}">
 	                                		<div class="subject">
-	                                			<a href="board_view?rfbnum=${list.rfbnum }">${list.rfbtitle.substring(0,11)}...</a>
+	                                			<a href="board_view?rfbnum=${list.rfbnum }">
+	                                				<!-- 
+	                                				<c:out value="${fn:substring(list.rfbtitle,0,12) }"></c:out>...
+	                                				 -->
+	                                				${list.rfbtitle.substring(0,12)}...
+	                                			</a>
 	                               			</div>
                                 		</c:when>
+                                		
                                 		<c:otherwise>
                                 			<div class="subject">
-	                                			<a href="board_view?rfbnum=${list.rfbnum }">${list.rfbtitle}</a>
+	                                			<a href="board_view?rfbnum=${list.rfbnum }">
+	                                				<!-- 
+	                                				<c:out value="${list.rfbtitle}"></c:out>...
+	                                				 -->
+	                                				${list.rfbtitle}
+	                                			</a>
 	                               			</div>
                                 		</c:otherwise>
+                                		
                                 	</c:choose>
 	                                <div class="date">${list.rfbdate.substring(0,10) }</div>
 	                                <div class="clear"></div>

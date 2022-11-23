@@ -153,7 +153,7 @@
             </form>
             
             <div id="buttons">
-                <a href="board_delete?rfbnum=${content.rfbnum}" onclick="return confirm('삭제하면 다시 복구할 수 없습니다.\n정말 삭제하시겠습니까?')">
+                <a href="board_delete?rfbnum=${content.rfbnum}&rfbuserid=${content.rfbuserid}" onclick="return confirm('삭제하면 다시 복구할 수 없습니다.\n정말 삭제하시겠습니까?')">
                 	<img src="${pageContext.request.contextPath}/resources/img/delete.png">
                 </a>
                 <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>

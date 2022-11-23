@@ -165,7 +165,7 @@
                     ◀이전 1 다음▶
                 </div>
                 <div class="col2">
-                    <a href="#"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
+                    <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>
                     <a href="board_write"><img src="${pageContext.request.contextPath}/resources/img/write.png"></a>
                 </div>
             </div>

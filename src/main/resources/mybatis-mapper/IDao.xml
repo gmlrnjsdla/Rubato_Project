@@ -53,7 +53,15 @@
 	</update>
 
 	<select id="rfbSearchTitleList" resultType="com.rubato.homepage.dto.RFBoardDto">
-		SELECT * FROM rubafreeboard WHERE rfbtitle= LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
+		SELECT * FROM rubafreeboard WHERE rfbtitle LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
+	</select>
+	
+	<select id="rfbSearchContentList" resultType="com.rubato.homepage.dto.RFBoardDto">
+		SELECT * FROM rubafreeboard WHERE rfbcontent LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
+	</select>
+	
+	<select id="rfbSearchWriterList" resultType="com.rubato.homepage.dto.RFBoardDto">
+		SELECT * FROM rubafreeboard WHERE rfbname LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
 	</select>
 
 <!-- ==================================================================== -->
