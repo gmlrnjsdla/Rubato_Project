@@ -30,6 +30,10 @@ dependencies {
 	// jsp 의존설정
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'javax.servlet:jstl'
+	
+	//파일 업로드 관련
+	implementation 'org.apache.commons:commons-lang3:3.0'
+	implementation 'commons-io:commons-io:2.5'
 }
 
 tasks.named('test') {
