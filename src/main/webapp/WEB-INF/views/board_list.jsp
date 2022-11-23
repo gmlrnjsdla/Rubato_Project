@@ -154,7 +154,7 @@
                     &nbsp;&nbsp;[&nbsp;${list.rfbreplycount}&nbsp;]
                     </c:if>
                     <c:if test="${list.filecount == 1}">
-                    &nbsp;&nbsp;<img width="35" src="${pageContext.request.contextPath}/resources/img/file.png">
+                    &nbsp;&nbsp;<a href="file_down?rfbnum=${list.rfbnum}"><img width="35" src="${pageContext.request.contextPath}/resources/img/file.png"></a>
                     </c:if>
                     </td>
                     <td class="col3">${list.rfbname}</td>

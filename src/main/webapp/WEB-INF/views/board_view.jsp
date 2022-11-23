@@ -137,14 +137,14 @@
                 		if(fileextension.equals("png") || fileextension.equals("jpg") || fileextension.equals("bmp") || fileextension.equals("gif")){
              	%>
                     		<p id=file_info">
-                    			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}">${fileoriname}</a><br><br></h3>
-                    			<img width="100" src="${pageContext.request.contextPath}/resources/uploadfiles/${filename}"><br><br>
+                    			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}" download>${fileoriname}</a><br><br></h3>
+                    			<img width="100" src="${pageContext.request.contextPath}/resources/uploadfiles/${filename}" ><br><br>
                     		</P>
                 <%
                     	}else{
             	%>		
 		            		<p id=file_info">
-		            			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}">${fileoriname}</a><br><br></h3>
+		            			<h3>※ 첨부파일 : <a href="${pageContext.request.contextPath}/resources/uploadfiles/${filename}" download>${fileoriname}</a><br><br></h3>
 		            		</P>
             	<%
                     	}

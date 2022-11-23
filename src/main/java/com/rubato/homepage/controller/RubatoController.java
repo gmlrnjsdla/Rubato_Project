@@ -409,4 +409,26 @@ public class RubatoController {
 		return "board_list";
 	}
 	
+	@RequestMapping(value = "file_down")
+	public String file_down(HttpServletRequest request, Model model, HttpServletResponse response) {
+		
+		IDao dao = sqlSession.getMapper(IDao.class);
+		String rfbnum = request.getParameter("rfbnum");
+		FileDto fdto = dao.getfileInfoDao(rfbnum);
+		String filename = fdto.getFilename();
+		
+		PrintWriter out;
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			out = response.getWriter();
+			out.println("<script>window.location.href='/resources/uploadfiles/" + filename + "'</script>");
+			out.flush();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return "filedown";
+	}
 }
