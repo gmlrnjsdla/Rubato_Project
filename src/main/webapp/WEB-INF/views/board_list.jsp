@@ -165,7 +165,22 @@
             </table>        <!-- 게시판 목록 테이블 end -->
             <div id="buttons">
                 <div class="col1">
-                    ◀이전 1 다음▶
+                    <c:if test="${pageMaker.prev}">
+						<a href="board_list?pageNum=${pageMaker.startPage - 5}">prev</a>&nbsp;&nbsp;
+							</c:if>
+							<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="num">
+								<c:choose>
+									<c:when test="${num == pageNum }">
+										<u style="color:black;">${num}</u>&nbsp;&nbsp;
+									</c:when>
+									<c:otherwise>
+										<a href="board_list?pageNum=${num}">${num}</a>&nbsp;&nbsp;
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<c:if test="${pageMaker.next}">
+						<a href="board_list?pageNum=${pageMaker.startPage + 5}">next</a>
+					</c:if>
                 </div>
                 <div class="col2">
                     <a href="board_list"><img src="${pageContext.request.contextPath}/resources/img/list.png"></a>

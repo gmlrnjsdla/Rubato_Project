@@ -2,6 +2,7 @@ package com.rubato.homepage.dao;
 
 import java.util.ArrayList;
 
+import com.rubato.homepage.dto.Criteria;
 import com.rubato.homepage.dto.FileDto;
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
@@ -19,7 +20,7 @@ public interface IDao {
 	
 	
 	public void rfbWriteDao(String rfbname, String rfbtitle, String rfbcontent, String rfbuserid, int filecount);
-	public ArrayList<RFBoardDto> rfblistDao();
+	public ArrayList<RFBoardDto> rfblistDao(Criteria cri);
 	public RFBoardDto boardViewDao(String rfbnum);
 	public void uphitDao(String rfbnum);
 	public void boardDeleteDao(String rfbnum);
@@ -38,6 +39,8 @@ public interface IDao {
 	public void boardReplyCountDao(String rfbnum);
 	public void replyDeleteDao(String rrnum);
 	public void replyDeleteCountDao(String rfbnum);
+	public int boardAllCount();
+
 //======================================댓글 관련=========================================//
 	
 

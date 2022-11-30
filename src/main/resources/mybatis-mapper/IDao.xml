@@ -33,7 +33,11 @@
 	</select>
 	
 	<select id="rfblistDao" resultType="com.rubato.homepage.dto.RFBoardDto">
-		SELECT * FROM rubafreeboard ORDER BY rfbnum DESC
+		SELECT * FROM 
+			(SELECT A.*,Floor((ROWNUM-1)/#{amount}+1)PAGE,ROWNUM
+			FROM
+			(SELECT * FROM rubafreeboard ORDER BY rfbnum DESC)A)
+		WHERE PAGE=#{pageNum}			
 	</select>
 	
 	<select id="boardViewDao" resultType="com.rubato.homepage.dto.RFBoardDto">
@@ -62,6 +66,10 @@
 	
 	<select id="rfbSearchWriterList" resultType="com.rubato.homepage.dto.RFBoardDto">
 		SELECT * FROM rubafreeboard WHERE rfbname LIKE '%' || #{param1} || '%' ORDER BY rfbnum DESC
+	</select>
+	
+	<select id="boardAllCount" resultType="int">
+		SELECT COUNT(*) FROM rubafreeboard
 	</select>
 
 <!-- ==================================================================== -->

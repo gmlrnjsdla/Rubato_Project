@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.rubato.homepage.dao.IDao;
+import com.rubato.homepage.dto.Criteria;
 import com.rubato.homepage.dto.FileDto;
+import com.rubato.homepage.dto.PageDto;
 import com.rubato.homepage.dto.RFBoardDto;
 import com.rubato.homepage.dto.RMemberDto;
 import com.rubato.homepage.dto.RReplyDto;
@@ -39,10 +41,10 @@ public class RubatoController {
 	}
 	
 	@RequestMapping(value="index")
-	public String index(Model model) {
+	public String index(Model model,Criteria cri) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
+		ArrayList<RFBoardDto> dtos = dao.rfblistDao(cri);
 		model.addAttribute("list", dtos);
 		
 		return "index";
@@ -181,10 +183,26 @@ public class RubatoController {
 	
 	
 	@RequestMapping(value="board_list")
-	public String board_list(HttpServletRequest request, Model model) {
+	public String board_list(HttpServletRequest request, Model model, Criteria cri) {
 		
 		IDao dao = sqlSession.getMapper(IDao.class);
-		ArrayList<RFBoardDto> dtos = dao.rfblistDao();
+		
+		int totalRecord = dao.boardAllCount();
+		int pageNumInt = 1;
+		if(request.getParameter("pageNum") == null) {
+			pageNumInt = 1;
+		}else {
+			pageNumInt = Integer.parseInt(request.getParameter("pageNum"));
+		}
+		cri.setPageNum(pageNumInt);
+		
+		cri.setStartNum(cri.getPageNum()-1 * cri.getAmount());  // 해당 페이지의 시작번호를 설정.
+		PageDto dto = new PageDto(cri,totalRecord);
+		
+		model.addAttribute("pageMaker", dto);
+		model.addAttribute("pageNum", pageNumInt);
+		
+		ArrayList<RFBoardDto> dtos = dao.rfblistDao(cri);
 		model.addAttribute("list", dtos);
 		
 		int boardCount = dtos.size();
